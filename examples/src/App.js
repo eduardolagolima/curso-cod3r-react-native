@@ -1,6 +1,11 @@
 import React from 'react';
-import {Text} from 'react-native';
+import {Text, View} from 'react-native';
 
-export default () => {
-  return <Text>Teste</Text>;
-};
+import FirstExample from './components/FirstExample';
+
+export default () => (
+  <View>
+    <Text>{1 + 1}</Text>
+    <FirstExample />
+  </View>
+);
