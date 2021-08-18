@@ -6,7 +6,8 @@ import {View, StyleSheet} from 'react-native';
 // import MinMax from './components/MinMax';
 // import Random from './components/Random';
 // import Fragment from './components/Fragment';
-import Button from './components/Button';
+// import Button from './components/Button';
+import Counter from './components/Counter';
 
 export default () => (
   <View style={style.App}>
@@ -17,7 +18,8 @@ export default () => (
     {/* <MinMax max={6} min={3} /> */}
     {/* <Random min={1} max={60} /> */}
     {/* <Fragment title="Título" subtitle="Subtítulo" /> */}
-    <Button />
+    {/* <Button /> */}
+    <Counter initial={100} range={5} />
   </View>
 );
 
