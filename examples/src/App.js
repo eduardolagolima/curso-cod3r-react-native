@@ -7,7 +7,8 @@ import {View, StyleSheet} from 'react-native';
 // import Random from './components/Random';
 // import Fragment from './components/Fragment';
 // import Button from './components/Button';
-import Counter from './components/Counter';
+// import Counter from './components/Counter';
+import Father from './components/direct-communication/Father';
 
 export default () => (
   <View style={style.App}>
@@ -19,7 +20,8 @@ export default () => (
     {/* <Random min={1} max={60} /> */}
     {/* <Fragment title="Título" subtitle="Subtítulo" /> */}
     {/* <Button /> */}
-    <Counter initial={100} range={5} />
+    {/* <Counter initial={100} range={5} /> */}
+    <Father name="Roberto" />
   </View>
 );
 
