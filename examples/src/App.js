@@ -5,7 +5,8 @@ import {View, StyleSheet} from 'react-native';
 // import Component, {Component1, Component2} from './components/Multiples';
 // import MinMax from './components/MinMax';
 // import Random from './components/Random';
-import Fragment from './components/Fragment';
+// import Fragment from './components/Fragment';
+import Button from './components/Button';
 
 export default () => (
   <View style={style.App}>
@@ -15,7 +16,8 @@ export default () => (
     {/* <Component2 /> */}
     {/* <MinMax max={6} min={3} /> */}
     {/* <Random min={1} max={60} /> */}
-    <Fragment title="Título" subtitle="Subtítulo" />
+    {/* <Fragment title="Título" subtitle="Subtítulo" /> */}
+    <Button />
   </View>
 );
 
