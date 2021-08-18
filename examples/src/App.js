@@ -8,7 +8,8 @@ import {View, StyleSheet} from 'react-native';
 // import Fragment from './components/Fragment';
 // import Button from './components/Button';
 // import Counter from './components/Counter';
-import Father from './components/direct-communication/Father';
+// import Father from './components/direct-communication/Father';
+import Father from './components/indirect-communication/Father';
 
 export default () => (
   <View style={style.App}>
@@ -21,7 +22,8 @@ export default () => (
     {/* <Fragment title="Título" subtitle="Subtítulo" /> */}
     {/* <Button /> */}
     {/* <Counter initial={100} range={5} /> */}
-    <Father name="Roberto" />
+    {/* <Father name="Roberto" /> */}
+    <Father />
   </View>
 );
 
