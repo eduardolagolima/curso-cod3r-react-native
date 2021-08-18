@@ -1,11 +1,14 @@
 import React from 'react';
-import {Text, View} from 'react-native';
+import {View} from 'react-native';
 
-import FirstExample from './components/FirstExample';
+// import FirstExample from './components/FirstExample';
+import Component, {Component1, Component2} from './components/Multiples';
 
 export default () => (
   <View>
-    <Text>{1 + 1}</Text>
-    <FirstExample />
+    {/* <FirstExample /> */}
+    <Component />
+    <Component1 />
+    <Component2 />
   </View>
 );
