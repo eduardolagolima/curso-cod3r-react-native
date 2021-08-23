@@ -12,7 +12,9 @@ import {SafeAreaView, StyleSheet} from 'react-native';
 // import Father from './components/indirect-communication/Father';
 // import Counter from './components/counter/Counter';
 // import Platform from './components/Platform';
-import ConditionalRendering from './components/ConditionalRendering';
+// import ConditionalRendering from './components/ConditionalRendering';
+import Family from './components/family/Family';
+import Member from './components/family/Member';
 
 export default () => (
   <SafeAreaView style={style.App}>
@@ -29,7 +31,13 @@ export default () => (
     {/* <Father /> */}
     {/* <Counter /> */}
     {/* <Platform /> */}
-    <ConditionalRendering number={5} />
+    {/* <ConditionalRendering number={5} /> */}
+    <Family family="Silva">
+      <Member name="Maria" lastName="Silva" />
+    </Family>
+    <Family family="Souza">
+      <Member name="Cláudia" lastName="Souza" />
+    </Family>
   </SafeAreaView>
 );
 
