@@ -10,7 +10,8 @@ import {View, StyleSheet} from 'react-native';
 // import Counter from './components/Counter';
 // import Father from './components/direct-communication/Father';
 // import Father from './components/indirect-communication/Father';
-import Counter from './components/counter/Counter';
+// import Counter from './components/counter/Counter';
+import Platform from './components/Platform';
 
 export default () => (
   <View style={style.App}>
@@ -25,7 +26,8 @@ export default () => (
     {/* <Counter initial={100} range={5} /> */}
     {/* <Father name="Roberto" /> */}
     {/* <Father /> */}
-    <Counter />
+    {/* <Counter /> */}
+    <Platform />
   </View>
 );
 
