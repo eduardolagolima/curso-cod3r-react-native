@@ -19,7 +19,8 @@ import {SafeAreaView, StyleSheet} from 'react-native';
 // import ProductsList from './components/products/ProductsList';
 // import TextInput from './components/TextInput';
 // import Flexbox1 from './components/layout/Flexbox1';
-import Flexbox2 from './components/layout/Flexbox2';
+// import Flexbox2 from './components/layout/Flexbox2';
+import Flexbox3 from './components/layout/Flexbox3';
 
 export default () => (
   <SafeAreaView style={style.App}>
@@ -48,7 +49,7 @@ export default () => (
     <User user={{email: 'ciclano@teste.com'}} />
     <User user={{name: 'João', email: 'joao@teste.com'}} /> */}
     {/* <ProductsList /> */}
-    <Flexbox2 />
+    <Flexbox3 />
   </SafeAreaView>
 );
 
