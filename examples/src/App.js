@@ -55,7 +55,7 @@ export default () => (
     {/* <Flexbox2 /> */}
     {/* <Flexbox3 /> */}
     {/* <Flexbox4 /> */}
-    <Lottery />
+    <Lottery quantity={6} />
   </SafeAreaView>
 );
 

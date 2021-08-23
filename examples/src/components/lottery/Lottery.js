@@ -8,6 +8,9 @@ export default class Lottery extends Component {
     return (
       <>
         <Text style={style.largeFont}>Gerador Mega-Sena</Text>
+        <Text style={style.mediumFont}>
+          Quantidade de números: {this.props.quantity}
+        </Text>
       </>
     );
   }
