@@ -15,7 +15,8 @@ import {SafeAreaView, StyleSheet} from 'react-native';
 // import ConditionalRendering from './components/ConditionalRendering';
 // import Family from './components/family/Family';
 // import Member from './components/family/Member';
-import User from './components/User';
+// import User from './components/User';
+import ProductsList from './components/products/ProductsList';
 
 export default () => (
   <SafeAreaView style={style.App}>
@@ -39,10 +40,11 @@ export default () => (
     <Family family="Souza">
       <Member name="Cláudia" lastName="Souza" />
     </Family> */}
-    <User user={{name: 'Fulano', email: 'fulana@teste.com'}} />
+    {/* <User user={{name: 'Fulano', email: 'fulana@teste.com'}} />
     <User user={{name: 'Beltrano'}} />
     <User user={{email: 'ciclano@teste.com'}} />
-    <User user={{name: 'João', email: 'joao@teste.com'}} />
+    <User user={{name: 'João', email: 'joao@teste.com'}} /> */}
+    <ProductsList />
   </SafeAreaView>
 );
 
