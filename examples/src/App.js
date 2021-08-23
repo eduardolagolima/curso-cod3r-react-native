@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, StyleSheet} from 'react-native';
+import {SafeAreaView, StyleSheet} from 'react-native';
 
 // import FirstExample from './components/FirstExample';
 // import Component, {Component1, Component2} from './components/Multiples';
@@ -11,10 +11,11 @@ import {View, StyleSheet} from 'react-native';
 // import Father from './components/direct-communication/Father';
 // import Father from './components/indirect-communication/Father';
 // import Counter from './components/counter/Counter';
-import Platform from './components/Platform';
+// import Platform from './components/Platform';
+import ConditionalRendering from './components/ConditionalRendering';
 
 export default () => (
-  <View style={style.App}>
+  <SafeAreaView style={style.App}>
     {/* <FirstExample /> */}
     {/* <Component /> */}
     {/* <Component1 /> */}
@@ -27,8 +28,9 @@ export default () => (
     {/* <Father name="Roberto" /> */}
     {/* <Father /> */}
     {/* <Counter /> */}
-    <Platform />
-  </View>
+    {/* <Platform /> */}
+    <ConditionalRendering number={5} />
+  </SafeAreaView>
 );
 
 const style = StyleSheet.create({
