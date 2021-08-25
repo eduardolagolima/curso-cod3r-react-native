@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
-import {Text, TextInput, StyleSheet, Button} from 'react-native';
+import {Text, TextInput, StyleSheet, Button, View} from 'react-native';
 
 import style from '../../style';
+
+import Number from './Number';
 
 export default class Lottery extends Component {
   state = {
@@ -47,9 +49,6 @@ export default class Lottery extends Component {
     return (
       <>
         <Text style={style.largeFont}>Gerador Mega-Sena</Text>
-        <Text style={style.mediumFont}>
-          Quantidade de números: {this.state.quantity}
-        </Text>
         <TextInput
           keyboardType="numeric"
           style={localStyle.textInput}
@@ -58,14 +57,25 @@ export default class Lottery extends Component {
           onChangeText={this.setQuantity}
         />
         <Button title="Gerar" onPress={this.generateNumbers} />
-        <Text>{this.state.numbers.join(' - ')}</Text>
+        <View style={localStyle.numbers}>
+          {this.state.numbers.map(number => (
+            <Number key={number} number={number} />
+          ))}
+        </View>
       </>
     );
   }
 }
 
 const localStyle = StyleSheet.create({
+  numbers: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    marginTop: 20,
+  },
   textInput: {
     borderBottomWidth: 1,
+    marginBottom: 20,
   },
 });
