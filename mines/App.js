@@ -10,9 +10,11 @@ import {
   wonGame,
   showMines,
   invertFlag,
+  flagsUsed,
 } from './src/functions';
 
 import MineField from './src/components/MineField';
+import Header from './src/components/Header';
 
 export default class App extends Component {
   constructor(props) {
@@ -72,6 +74,10 @@ export default class App extends Component {
   render() {
     return (
       <View style={styles.container}>
+        <Header
+          flagsLeft={this.minesAmount() - flagsUsed(this.state.board)}
+          onNewGame={() => this.setState(this.createState())}
+        />
         <View style={styles.board}>
           <MineField
             board={this.state.board}
