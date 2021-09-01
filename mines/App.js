@@ -1,29 +1,50 @@
 import React, {Component} from 'react';
-import {Text, View} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 
 import params from './src/params';
+import {createMinedBoard} from './src/functions';
 
-import Field from './src/components/Field';
+import MineField from './src/components/MineField';
 
 export default class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = this.createState();
+  }
+
+  minesAmount = () => {
+    const cols = params.getColumnsAmount();
+    const rows = params.getRowsAmount();
+
+    return Math.ceil(cols * rows * params.difficultLevel);
+  };
+
+  createState = () => {
+    const cols = params.getColumnsAmount();
+    const rows = params.getRowsAmount();
+    const board = createMinedBoard(rows, cols, this.minesAmount());
+
+    return {board};
+  };
+
   render() {
     return (
-      <View>
-        <Text>Mines</Text>
-        <Text>Colunas: {params.getColumnsAmount()}</Text>
-        <Text>Linhas: {params.getRowsAmount()}</Text>
-        <Field />
-        <Field opened />
-        <Field opened nearMines={1} />
-        <Field opened nearMines={2} />
-        <Field opened nearMines={3} />
-        <Field opened nearMines={6} />
-        <Field mined />
-        <Field mined opened />
-        <Field mined opened exploded />
-        <Field flagged />
-        <Field flagged opened />
+      <View style={styles.container}>
+        <View style={styles.board}>
+          <MineField board={this.state.board} />
+        </View>
       </View>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'flex-end',
+  },
+  board: {
+    alignItems: 'center',
+    backgroundColor: '#AAA',
+  },
+});
