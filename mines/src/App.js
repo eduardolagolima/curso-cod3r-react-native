@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {View, StyleSheet, Alert} from 'react-native';
 
-import params from './params';
+import params from './utils/params';
 import {
   createMinedBoard,
   cloneBoard,
@@ -11,7 +11,7 @@ import {
   showMines,
   invertFlag,
   flagsUsed,
-} from './functions';
+} from './utils/functions';
 
 import MineField from './components/MineField';
 import Header from './components/Header';

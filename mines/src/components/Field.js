@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, StyleSheet, Text, TouchableWithoutFeedback} from 'react-native';
 
-import params from '../params';
+import params from '../utils/params';
 
 import Mine from './Mine';
 import Flag from './Flag';
