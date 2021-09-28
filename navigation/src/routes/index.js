@@ -3,16 +3,16 @@ import {SafeAreaView, StyleSheet} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 
 // import NativeStack from './native-stack';
-// import Tab from './tab';
-import Drawer from './drawer';
+import Tab from './tab';
+// import Drawer from './drawer';
 
 export default () => {
   return (
     <SafeAreaView style={styles.container}>
       <NavigationContainer>
         {/* <NativeStack /> */}
-        {/* <Tab /> */}
-        <Drawer />
+        <Tab />
+        {/* <Drawer /> */}
       </NavigationContainer>
     </SafeAreaView>
   );
