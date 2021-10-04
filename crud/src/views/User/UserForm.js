@@ -1,6 +1,7 @@
 import React from 'react';
 import {Text} from 'react-native';
 
-export default () => {
-  return <Text>UserForm</Text>;
+export default props => {
+  const {user} = props.route.params;
+  return <Text>{user.name}</Text>;
 };
