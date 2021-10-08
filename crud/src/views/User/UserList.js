@@ -45,7 +45,9 @@ export default props => {
     <ListItem key={user.id} bottomDivider>
       <Avatar source={{uri: user.avatarUrl}} />
       <ListItem.Content>
-        <ListItem.Title>{user.name}</ListItem.Title>
+        <ListItem.Title>
+          {user.id} / {user.name}
+        </ListItem.Title>
         <ListItem.Subtitle>{user.email}</ListItem.Subtitle>
       </ListItem.Content>
       {getActions(user)}

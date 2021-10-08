@@ -6,10 +6,35 @@ const initialState = {users};
 const UsersContext = createContext({});
 
 const actions = {
-  deleteUser(state, action) {
+  createUser(state, action) {
+    const newUser = action.payload.user;
+    const maxUserId = state.users
+      .map(({id}) => id)
+      .reduce((acc, cur) => (cur > acc ? cur : acc));
+
+    newUser.id = maxUserId + 1;
+
     return {
       ...state,
-      users: state.users.filter(user => user.id !== action.payload.user.id),
+      users: [...state.users, newUser],
+    };
+  },
+  updateUser(state, action) {
+    const updatedUser = action.payload.user;
+
+    return {
+      ...state,
+      users: state.users.map(user =>
+        user.id === updatedUser.id ? updatedUser : user,
+      ),
+    };
+  },
+  deleteUser(state, action) {
+    const userToDelete = action.payload.user;
+
+    return {
+      ...state,
+      users: state.users.filter(user => user.id !== userToDelete.id),
     };
   },
 };
