@@ -5,6 +5,8 @@ import dayjs from 'dayjs';
 import commonStyles from '../styles/common';
 import todayImage from '../../assets/imgs/today.jpg';
 
+import Task from '../components/Task';
+
 export default class TaskList extends Component {
   render() {
     const today = dayjs().format('ddd, D [de] MMMM');
@@ -18,9 +20,12 @@ export default class TaskList extends Component {
           </View>
         </ImageBackground>
         <View style={styles.taskList}>
-          <Text>Tarefa #01</Text>
-          <Text>Tarefa #02</Text>
-          <Text>Tarefa #03</Text>
+          <Task
+            description="Comprar livro"
+            estimateAt={new Date()}
+            doneAt={new Date()}
+          />
+          <Task description="Ler livro" estimateAt={new Date()} doneAt={null} />
         </View>
       </View>
     );
