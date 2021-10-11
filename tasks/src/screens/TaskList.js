@@ -15,9 +15,12 @@ import todayImage from '../../assets/imgs/today.jpg';
 
 import Task from '../components/Task';
 
+import TaskAdd from './TaskAdd';
+
 export default class TaskList extends Component {
   state = {
     showDoneTasks: true,
+    showTaskAddModal: true,
     tasks: [
       {
         id: 1,
@@ -68,6 +71,10 @@ export default class TaskList extends Component {
 
     return (
       <View style={styles.container}>
+        <TaskAdd
+          isVisible={this.state.showTaskAddModal}
+          onCancel={() => this.setState({showTaskAddModal: false})}
+        />
         <ImageBackground source={todayImage} style={styles.background}>
           <View style={styles.iconBar}>
             <TouchableOpacity onPress={this.toggleFilter}>
