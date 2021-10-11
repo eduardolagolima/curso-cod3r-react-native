@@ -38,44 +38,44 @@ export default props => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flexDirection: 'row',
-    borderColor: '#aaa',
-    borderBottomWidth: 1,
+  checkContainer: {
     alignItems: 'center',
+    justifyContent: 'center',
+    width: '20%',
+  },
+  container: {
+    alignItems: 'center',
+    borderBottomWidth: 1,
+    borderColor: '#aaa',
+    flexDirection: 'row',
     paddingVertical: 10,
   },
-  checkContainer: {
-    width: '20%',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  pending: {
-    height: 25,
-    width: 25,
-    borderRadius: 13,
-    borderWidth: 1,
-    borderColor: '#555',
-  },
-  done: {
-    height: 25,
-    width: 25,
-    borderRadius: 13,
-    backgroundColor: '#4d7031',
-    alignItems: 'center',
-    justifyContent: 'center',
+  date: {
+    color: commonStyles.colors.subText,
+    fontFamily: commonStyles.fontFamily,
+    fontSize: 12,
   },
   description: {
-    fontFamily: commonStyles.fontFamily,
     color: commonStyles.colors.mainText,
+    fontFamily: commonStyles.fontFamily,
     fontSize: 15,
   },
   descriptionDecoration: {
     textDecorationLine: 'line-through',
   },
-  date: {
-    fontFamily: commonStyles.fontFamily,
-    color: commonStyles.colors.subText,
-    fontSize: 12,
+  done: {
+    alignItems: 'center',
+    backgroundColor: '#4d7031',
+    borderRadius: 13,
+    height: 25,
+    justifyContent: 'center',
+    width: 25,
+  },
+  pending: {
+    borderColor: '#555',
+    borderRadius: 13,
+    borderWidth: 1,
+    height: 25,
+    width: 25,
   },
 });

@@ -55,36 +55,36 @@ export default class TaskAdd extends Component {
 
 const styles = StyleSheet.create({
   background: {
-    flex: 1,
     backgroundColor: 'rgba(0, 0, 0, 0.7)',
+    flex: 1,
   },
-  container: {
-    backgroundColor: '#fff',
-  },
-  header: {
-    fontFamily: commonStyles.fontFamily,
-    backgroundColor: commonStyles.colors.today,
-    color: commonStyles.colors.secondary,
-    textAlign: 'center',
-    padding: 15,
-    fontSize: 18,
-  },
-  input: {
-    fontFamily: commonStyles.fontFamily,
-    height: 40,
-    margin: 15,
-    backgroundColor: '#fff',
-    borderWidth: 1,
-    borderColor: '#e3e3e3',
-    borderRadius: 6,
+  button: {
+    color: commonStyles.colors.today,
+    margin: 20,
+    marginRight: 30,
   },
   buttons: {
     flexDirection: 'row',
     justifyContent: 'flex-end',
   },
-  button: {
-    margin: 20,
-    marginRight: 30,
-    color: commonStyles.colors.today,
+  container: {
+    backgroundColor: '#fff',
+  },
+  header: {
+    backgroundColor: commonStyles.colors.today,
+    color: commonStyles.colors.secondary,
+    fontFamily: commonStyles.fontFamily,
+    fontSize: 18,
+    padding: 15,
+    textAlign: 'center',
+  },
+  input: {
+    backgroundColor: '#fff',
+    borderColor: '#e3e3e3',
+    borderRadius: 6,
+    borderWidth: 1,
+    fontFamily: commonStyles.fontFamily,
+    height: 40,
+    margin: 15,
   },
 });

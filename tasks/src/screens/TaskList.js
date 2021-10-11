@@ -23,16 +23,16 @@ export default class TaskList extends Component {
     showTaskAddModal: true,
     tasks: [
       {
-        id: 1,
         description: 'Comprar livro',
-        estimateAt: new Date(),
         doneAt: new Date(),
+        estimateAt: new Date(),
+        id: 1,
       },
       {
-        id: 2,
         description: 'Ler livro',
-        estimateAt: new Date(),
         doneAt: null,
+        estimateAt: new Date(),
+        id: 2,
       },
     ],
     visibleTasks: [],
@@ -105,37 +105,37 @@ export default class TaskList extends Component {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
   background: {
     flex: 3,
   },
-  taskList: {
-    flex: 7,
-  },
-  titleBar: {
+  container: {
     flex: 1,
-    justifyContent: 'flex-end',
-  },
-  title: {
-    fontFamily: commonStyles.fontFamily,
-    color: commonStyles.colors.secondary,
-    fontSize: 50,
-    marginLeft: 20,
-    marginBottom: 20,
-  },
-  subtitle: {
-    fontFamily: commonStyles.fontFamily,
-    color: commonStyles.colors.secondary,
-    fontSize: 20,
-    marginLeft: 20,
-    marginBottom: 30,
   },
   iconBar: {
     flexDirection: 'row',
     justifyContent: 'flex-end',
     marginRight: 10,
     marginTop: 10,
+  },
+  subtitle: {
+    color: commonStyles.colors.secondary,
+    fontFamily: commonStyles.fontFamily,
+    fontSize: 20,
+    marginBottom: 30,
+    marginLeft: 20,
+  },
+  taskList: {
+    flex: 7,
+  },
+  title: {
+    color: commonStyles.colors.secondary,
+    fontFamily: commonStyles.fontFamily,
+    fontSize: 50,
+    marginBottom: 20,
+    marginLeft: 20,
+  },
+  titleBar: {
+    flex: 1,
+    justifyContent: 'flex-end',
   },
 });
