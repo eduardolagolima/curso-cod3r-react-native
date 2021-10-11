@@ -32,10 +32,23 @@ export default class TaskList extends Component {
         doneAt: null,
       },
     ],
+    visibleTasks: [],
+  };
+
+  componentDidMount = () => {
+    this.filterTasks();
   };
 
   toggleFilter = () => {
-    this.setState({showDoneTasks: !this.state.showDoneTasks});
+    this.setState({showDoneTasks: !this.state.showDoneTasks}, this.filterTasks);
+  };
+
+  filterTasks = () => {
+    const visibleTasks = this.state.showDoneTasks
+      ? [...this.state.tasks]
+      : this.state.tasks.filter(task => !task.doneAt);
+
+    this.setState({visibleTasks});
   };
 
   toggleTask = id => {
@@ -47,7 +60,7 @@ export default class TaskList extends Component {
       }
     });
 
-    this.setState({tasks});
+    this.setState({tasks}, this.filterTasks);
   };
 
   render() {
@@ -72,7 +85,7 @@ export default class TaskList extends Component {
         </ImageBackground>
         <View style={styles.taskList}>
           <FlatList
-            data={this.state.tasks}
+            data={this.state.visibleTasks}
             keyExtractor={item => `${item.id}`}
             renderItem={({item}) => (
               <Task {...item} toggleTask={this.toggleTask} />
