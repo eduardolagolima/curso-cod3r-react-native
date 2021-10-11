@@ -1,6 +1,14 @@
 import React, {Component} from 'react';
-import {Text, View, ImageBackground, StyleSheet, FlatList} from 'react-native';
+import {
+  Text,
+  View,
+  ImageBackground,
+  StyleSheet,
+  FlatList,
+  TouchableOpacity,
+} from 'react-native';
 import dayjs from 'dayjs';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 import commonStyles from '../styles/common';
 import todayImage from '../../assets/imgs/today.jpg';
@@ -9,6 +17,7 @@ import Task from '../components/Task';
 
 export default class TaskList extends Component {
   state = {
+    showDoneTasks: true,
     tasks: [
       {
         id: 1,
@@ -23,6 +32,10 @@ export default class TaskList extends Component {
         doneAt: null,
       },
     ],
+  };
+
+  toggleFilter = () => {
+    this.setState({showDoneTasks: !this.state.showDoneTasks});
   };
 
   toggleTask = id => {
@@ -43,6 +56,15 @@ export default class TaskList extends Component {
     return (
       <View style={styles.container}>
         <ImageBackground source={todayImage} style={styles.background}>
+          <View style={styles.iconBar}>
+            <TouchableOpacity onPress={this.toggleFilter}>
+              <Icon
+                name={this.state.showDoneTasks ? 'eye' : 'eye-slash'}
+                size={20}
+                color={commonStyles.colors.secondary}
+              />
+            </TouchableOpacity>
+          </View>
           <View style={styles.titleBar}>
             <Text style={styles.title}>Hoje</Text>
             <Text style={styles.subtitle}>{today}</Text>
@@ -89,5 +111,11 @@ const styles = StyleSheet.create({
     fontSize: 20,
     marginLeft: 20,
     marginBottom: 30,
+  },
+  iconBar: {
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    marginRight: 10,
+    marginTop: 10,
   },
 });
