@@ -20,7 +20,7 @@ import TaskAdd from './TaskAdd';
 export default class TaskList extends Component {
   state = {
     showDoneTasks: true,
-    showTaskAddModal: true,
+    showTaskAddModal: false,
     tasks: [
       {
         description: 'Comprar livro',
@@ -99,12 +99,29 @@ export default class TaskList extends Component {
             )}
           />
         </View>
+        <TouchableOpacity
+          activeOpacity={0.7}
+          style={styles.addButton}
+          onPress={() => this.setState({showTaskAddModal: true})}>
+          <Icon name="plus" size={20} color={commonStyles.colors.secondary} />
+        </TouchableOpacity>
       </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
+  addButton: {
+    alignItems: 'center',
+    backgroundColor: commonStyles.colors.today,
+    borderRadius: 25,
+    bottom: 20,
+    height: 50,
+    justifyContent: 'center',
+    position: 'absolute',
+    right: 20,
+    width: 50,
+  },
   background: {
     flex: 3,
   },
