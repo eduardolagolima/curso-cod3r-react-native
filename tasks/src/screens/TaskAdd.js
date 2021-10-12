@@ -8,14 +8,44 @@ import {
   TouchableOpacity,
   TextInput,
 } from 'react-native';
+import dayjs from 'dayjs';
+import DateTimePicker from '@react-native-community/datetimepicker';
 
 import commonStyles from '../styles/common';
 
-const initialState = {description: ''};
+const initialState = {
+  date: new Date(),
+  description: '',
+  showDatePicker: false,
+};
 
 export default class TaskAdd extends Component {
   state = {
     ...initialState,
+  };
+
+  getDatePicker = () => {
+    const datePicker = (
+      <DateTimePicker
+        value={this.state.date}
+        onChange={(_, date = this.state.date) =>
+          this.setState({date, showDatePicker: false})
+        }
+        mode="date"
+      />
+    );
+    const formattedDate = dayjs(this.state.date).format(
+      'ddd, D [de] MMMM [de] YYYY',
+    );
+
+    return (
+      <View>
+        <TouchableOpacity onPress={() => this.setState({showDatePicker: true})}>
+          <Text style={styles.formattedDate}>{formattedDate}</Text>
+        </TouchableOpacity>
+        {this.state.showDatePicker && datePicker}
+      </View>
+    );
   };
 
   render() {
@@ -36,6 +66,7 @@ export default class TaskAdd extends Component {
             value={this.state.description}
             onChangeText={description => this.setState({description})}
           />
+          {this.getDatePicker()}
           <View style={styles.buttons}>
             <TouchableOpacity onPress={this.props.onCancel}>
               <Text style={styles.button}>Cancelar</Text>
@@ -69,6 +100,11 @@ const styles = StyleSheet.create({
   },
   container: {
     backgroundColor: '#fff',
+  },
+  formattedDate: {
+    fontFamily: commonStyles.fontFamily,
+    fontSize: 20,
+    marginLeft: 15,
   },
   header: {
     backgroundColor: commonStyles.colors.today,
