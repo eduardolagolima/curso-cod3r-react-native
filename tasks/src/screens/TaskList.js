@@ -26,13 +26,13 @@ export default class TaskList extends Component {
         description: 'Comprar livro',
         doneAt: new Date(),
         estimateAt: new Date(),
-        id: 1,
+        id: Math.random(),
       },
       {
         description: 'Ler livro',
         doneAt: null,
         estimateAt: new Date(),
-        id: 2,
+        id: Math.random(),
       },
     ],
     visibleTasks: [],
@@ -66,6 +66,19 @@ export default class TaskList extends Component {
     this.setState({tasks}, this.filterTasks);
   };
 
+  addTask = newTask => {
+    const tasks = [...this.state.tasks];
+
+    tasks.push({
+      description: newTask.description,
+      doneAt: null,
+      estimateAt: newTask.date,
+      id: Math.random(),
+    });
+
+    this.setState({showTaskAddModal: false, tasks}, this.filterTasks);
+  };
+
   render() {
     const today = dayjs().format('ddd, D [de] MMMM');
 
@@ -74,6 +87,7 @@ export default class TaskList extends Component {
         <TaskAdd
           isVisible={this.state.showTaskAddModal}
           onCancel={() => this.setState({showTaskAddModal: false})}
+          onSave={this.addTask}
         />
         <ImageBackground source={todayImage} style={styles.background}>
           <View style={styles.iconBar}>
