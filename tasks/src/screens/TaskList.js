@@ -79,6 +79,12 @@ export default class TaskList extends Component {
     this.setState({showTaskAddModal: false, tasks}, this.filterTasks);
   };
 
+  deleteTask = id => {
+    const tasks = this.state.tasks.filter(task => task.id !== id);
+
+    this.setState({tasks}, this.filterTasks);
+  };
+
   render() {
     const today = dayjs().format('ddd, D [de] MMMM');
 
@@ -109,7 +115,11 @@ export default class TaskList extends Component {
             data={this.state.visibleTasks}
             keyExtractor={item => `${item.id}`}
             renderItem={({item}) => (
-              <Task {...item} toggleTask={this.toggleTask} />
+              <Task
+                {...item}
+                onToggle={this.toggleTask}
+                onDelete={this.deleteTask}
+              />
             )}
           />
         </View>
