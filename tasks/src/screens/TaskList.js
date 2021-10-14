@@ -7,6 +7,7 @@ import {
   FlatList,
   TouchableOpacity,
 } from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 import dayjs from 'dayjs';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
@@ -17,29 +18,25 @@ import Task from '../components/Task';
 
 import TaskAdd from './TaskAdd';
 
+const initialState = {
+  showDoneTasks: true,
+  showTaskAddModal: false,
+  tasks: [],
+  visibleTasks: [],
+};
+
 export default class TaskList extends Component {
   state = {
-    showDoneTasks: true,
-    showTaskAddModal: false,
-    tasks: [
-      {
-        description: 'Comprar livro',
-        doneAt: new Date(),
-        estimateAt: new Date(),
-        id: Math.random(),
-      },
-      {
-        description: 'Ler livro',
-        doneAt: null,
-        estimateAt: new Date(),
-        id: Math.random(),
-      },
-    ],
-    visibleTasks: [],
+    ...initialState,
   };
 
-  componentDidMount = () => {
-    this.filterTasks();
+  componentDidMount = async () => {
+    await this.setInitialState();
+  };
+
+  setInitialState = async () => {
+    const savedState = JSON.parse(await AsyncStorage.getItem('state'));
+    this.setState(savedState || initialState, this.filterTasks);
   };
 
   toggleFilter = () => {
@@ -52,6 +49,7 @@ export default class TaskList extends Component {
       : this.state.tasks.filter(task => !task.doneAt);
 
     this.setState({visibleTasks});
+    AsyncStorage.setItem('state', JSON.stringify(this.state));
   };
 
   toggleTask = id => {
