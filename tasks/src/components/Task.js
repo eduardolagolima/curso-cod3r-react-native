@@ -29,6 +29,15 @@ export default props => {
   const date = props.doneAt ?? props.estimateAt;
   const formattedDate = dayjs(date).format('ddd, D [de] MMMM');
 
+  const getLeftContent = () => {
+    return (
+      <View style={styles.left}>
+        <Icon style={styles.deleteIcon} name="trash" size={20} color="#fff" />
+        <Text style={styles.deleteText}>Excluir</Text>
+      </View>
+    );
+  };
+
   const getRightContent = () => {
     return (
       <TouchableOpacity style={styles.right}>
@@ -38,7 +47,9 @@ export default props => {
   };
 
   return (
-    <Swipeable renderRightActions={getRightContent}>
+    <Swipeable
+      renderLeftActions={getLeftContent}
+      renderRightActions={getRightContent}>
       <View style={styles.container}>
         <TouchableWithoutFeedback onPress={() => props.toggleTask(props.id)}>
           <View style={styles.checkContainer}>
@@ -64,6 +75,7 @@ const styles = StyleSheet.create({
   },
   container: {
     alignItems: 'center',
+    backgroundColor: '#fff',
     borderBottomWidth: 1,
     borderColor: '#aaa',
     flexDirection: 'row',
@@ -73,6 +85,15 @@ const styles = StyleSheet.create({
     color: commonStyles.colors.subText,
     fontFamily: commonStyles.fontFamily,
     fontSize: 12,
+  },
+  deleteIcon: {
+    marginLeft: 10,
+  },
+  deleteText: {
+    color: '#fff',
+    fontFamily: commonStyles.fontFamily,
+    fontSize: 20,
+    margin: 10,
   },
   description: {
     color: commonStyles.colors.mainText,
@@ -89,6 +110,12 @@ const styles = StyleSheet.create({
     height: 25,
     justifyContent: 'center',
     width: 25,
+  },
+  left: {
+    alignItems: 'center',
+    backgroundColor: 'red',
+    flex: 1,
+    flexDirection: 'row',
   },
   pending: {
     borderColor: '#555',
