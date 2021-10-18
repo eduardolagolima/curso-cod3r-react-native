@@ -1,10 +1,15 @@
 const express = require('express');
+const consign = require('consign');
+
+const database = require('./config/database');
 
 const app = express();
 
-app.get('/', (req, res) => {
-  res.status(200).send('Teste');
-});
+consign('')
+  .then('./config/middlewares.js')
+  .into(app);
+
+app.database = database;
 
 app.listen(3000, () => {
   console.log('Api iniciada');
