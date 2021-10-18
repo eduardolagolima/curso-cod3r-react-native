@@ -1,3 +1,4 @@
 module.exports = (app) => {
-  app.post('/signup', app.api.user.save);
+  app.post('/register', app.api.user.register);
+  app.post('/login', app.api.user.login);
 };
