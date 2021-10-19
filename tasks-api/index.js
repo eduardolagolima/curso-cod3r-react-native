@@ -6,9 +6,10 @@ const database = require('./config/database');
 
 const app = express();
 
-consign('')
+consign()
+  .include('./config/passport.js')
   .then('./config/middlewares.js')
-  .then('./api/')
+  .then('./api')
   .then('./config/routes.js')
   .into(app);
 
