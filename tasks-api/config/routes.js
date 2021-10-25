@@ -4,7 +4,7 @@ module.exports = (app) => {
 
   app.route('/tasks')
     .all(app.config.passport.authenticate())
-    .get(app.api.task.getTasks)
+    .get(app.api.task.list)
     .post(app.api.task.save);
 
   app.route('/tasks/:id')

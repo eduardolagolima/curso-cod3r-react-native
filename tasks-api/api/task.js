@@ -1,63 +1,66 @@
 const dayjs = require('dayjs');
 
 module.exports = (app) => {
-  const getTasks = (req, res) => {
-    const date = req.query.date ? req.query.date
-      : dayjs().endOf('day').toDate();
+  const list = async (req, res) => {
+    try {
+      const date = req.query.date ?? dayjs().endOf('day').toDate();
+      const tasks = await app.database('tasks')
+        .where({ userId: req.user.id })
+        .where('estimateAt', '<=', date)
+        .orderBy('estimateAt');
 
-    app.database('tasks')
-      .where({ userId: req.user.id })
-      .where('estimateAt', '<=', date)
-      .orderBy('estimateAt')
-      .then((tasks) => res.json(tasks))
-      .catch((err) => res.status(400).json(err));
+      return res.json(tasks);
+    } catch (error) {
+      return res.status(400).json(error);
+    }
   };
 
-  const save = (req, res) => {
-    req.body.userId = req.user.id;
+  const save = async (req, res) => {
+    try {
+      await app.database('tasks')
+        .insert({
+          desc: req.body.desc,
+          estimateAt: req.body.estimateAt,
+          userId: req.user.id,
+        });
 
-    app.database('tasks')
-      .insert(req.body)
-      .then(() => res.status(204).send())
-      .catch((err) => res.status(400).json(err));
+      return res.status(204).send();
+    } catch (error) {
+      return res.status(400).json(error);
+    }
   };
 
-  const remove = (req, res) => {
-    app.database('tasks')
-      .where({ id: req.params.id, userId: req.user.id })
-      .del()
-      .then((rowsDeleted) => {
-        if (rowsDeleted > 0) {
-          res.status(204).send();
-        } else {
-          const msg = `Não foi encontrada task com id ${req.params.id}.`;
-          res.status(400).send(msg);
-        }
-      })
-      .catch((err) => res.status(400).json(err));
+  const remove = async (req, res) => {
+    try {
+      await app.database('tasks')
+        .where({ id: req.params.id })
+        .del();
+
+      return res.status(204).send();
+    } catch (error) {
+      return res.status(400).json(error);
+    }
   };
 
-  const updateTaskDoneAt = (req, res, doneAt) => {
-    app.database('tasks')
-      .where({ id: req.params.id, userId: req.user.id })
-      .update({ doneAt })
-      .then(() => res.status(204).send())
-      .catch((err) => res.status(400).json(err));
-  };
+  const toggleTask = async (req, res) => {
+    try {
+      const task = await app.database('tasks')
+        .where({ id: req.params.id })
+        .first();
+      const doneAt = task.doneAt ? null : new Date();
 
-  const toggleTask = (req, res) => {
-    app.database('tasks')
-      .where({ id: req.params.id, userId: req.user.id })
-      .first()
-      .then((task) => {
-        const doneAt = task.doneAt ? null : new Date();
-        updateTaskDoneAt(req, res, doneAt);
-      })
-      .catch((err) => res.status(400).json(err));
+      await app.database('tasks')
+        .where({ id: req.params.id })
+        .update({ doneAt });
+
+      return res.status(204).send();
+    } catch (error) {
+      return res.status(400).json(error);
+    }
   };
 
   return {
-    getTasks,
+    list,
     save,
     remove,
     toggleTask,
