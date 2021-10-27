@@ -18,8 +18,10 @@ export default class Auth extends Component {
     email: '',
     name: '',
     password: '',
-    stageNew: true,
+    stageNew: false,
   };
+
+  signInOrSignUp = () => {};
 
   render() {
     return (
@@ -67,6 +69,15 @@ export default class Auth extends Component {
             </View>
           </TouchableOpacity>
         </View>
+        <TouchableOpacity
+          style={styles.toggle}
+          onPress={() => this.setState({stageNew: !this.state.stageNew})}>
+          <Text style={styles.buttonText}>
+            {this.state.stageNew
+              ? 'Já possui conta?'
+              : 'Ainda não possui conta?'}
+          </Text>
+        </TouchableOpacity>
       </ImageBackground>
     );
   }
@@ -112,5 +123,8 @@ const styles = StyleSheet.create({
     fontFamily: commonStyles.fontFamily,
     fontSize: 70,
     marginBottom: 10,
+  },
+  toggle: {
+    padding: 10,
   },
 });
