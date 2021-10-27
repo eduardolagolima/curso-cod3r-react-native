@@ -9,7 +9,9 @@ const Stack = createNativeStackNavigator();
 
 export default () => (
   <NavigationContainer>
-    <Stack.Navigator initialRouteName="Auth">
+    <Stack.Navigator
+      initialRouteName="Home"
+      screenOptions={{headerShown: false}}>
       <Stack.Screen name="Auth" component={Auth} />
       <Stack.Screen name="Home" component={TaskList} />
     </Stack.Navigator>
