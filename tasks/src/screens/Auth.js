@@ -8,20 +8,50 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
+import axios from 'axios';
+
 import loginImage from '../../assets/imgs/login.jpg';
 import AuthInput from '../components/AuthInput';
 import commonStyles from '../styles/common';
+import {apiUrl} from '../utils/api';
+import {showError, showSuccess} from '../utils/feedback';
+
+const initialState = {
+  confirmPassword: '',
+  email: '',
+  name: '',
+  password: '',
+  stageNew: false,
+};
 
 export default class Auth extends Component {
   state = {
-    confirmPassword: '',
-    email: '',
-    name: '',
-    password: '',
-    stageNew: false,
+    ...initialState,
   };
 
-  signInOrSignUp = () => {};
+  register = async () => {
+    try {
+      await axios.post(`${apiUrl}/register`, {
+        confirmPassword: this.state.confirmPassword,
+        email: this.state.email,
+        name: this.state.name,
+        password: this.state.password,
+      });
+
+      showSuccess('Usuário cadastrado com sucesso');
+
+      this.setState({...initialState});
+    } catch (error) {
+      showError(error);
+    }
+  };
+
+  login = async () => {
+    try {
+    } catch (error) {
+      showError(error);
+    }
+  };
 
   render() {
     return (
@@ -61,7 +91,11 @@ export default class Auth extends Component {
               onChangeText={confirmPassword => this.setState({confirmPassword})}
             />
           )}
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={() =>
+              this.state.stageNew ? this.register() : this.login()
+            }
+          >
             <View style={styles.button}>
               <Text style={styles.buttonText}>
                 {this.state.stageNew ? 'Registrar' : 'Entrar'}
