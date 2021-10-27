@@ -4,9 +4,10 @@ import {
   Text,
   StyleSheet,
   View,
-  TextInput,
   TouchableOpacity,
 } from 'react-native';
+
+import AuthInput from '../components/AuthInput';
 
 import loginImage from '../../assets/imgs/login.jpg';
 
@@ -32,32 +33,32 @@ export default class Auth extends Component {
             {this.state.stageNew ? 'Crie a sua conta' : 'Informe seus dados'}
           </Text>
           {this.state.stageNew && (
-            <TextInput
+            <AuthInput
+              icon="user"
               placeholder="Nome"
-              value={this.state.nome}
-              style={styles.textInput}
-              onChangeText={nome => this.setState({nome})}
+              value={this.state.name}
+              onChangeText={name => this.setState({name})}
             />
           )}
-          <TextInput
+          <AuthInput
+            icon="at"
             placeholder="E-mail"
             value={this.state.email}
-            style={styles.textInput}
             onChangeText={email => this.setState({email})}
           />
-          <TextInput
+          <AuthInput
+            icon="lock"
             placeholder="Senha"
             secureTextEntry={true}
             value={this.state.password}
-            style={styles.textInput}
             onChangeText={password => this.setState({password})}
           />
           {this.state.stageNew && (
-            <TextInput
+            <AuthInput
+              icon="lock"
               placeholder="Confirmar Senha"
               secureTextEntry={true}
               value={this.state.confirmPassword}
-              style={styles.textInput}
               onChangeText={confirmPassword => this.setState({confirmPassword})}
             />
           )}
@@ -93,6 +94,7 @@ const styles = StyleSheet.create({
   button: {
     alignItems: 'center',
     backgroundColor: '#080',
+    borderRadius: 7,
     marginTop: 10,
     padding: 10,
   },
@@ -112,11 +114,6 @@ const styles = StyleSheet.create({
     fontSize: 20,
     marginBottom: 10,
     textAlign: 'center',
-  },
-  textInput: {
-    backgroundColor: '#fff',
-    marginTop: 10,
-    padding: 10,
   },
   title: {
     color: commonStyles.colors.secondary,
