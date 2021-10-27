@@ -1,4 +1,5 @@
 import React from 'react';
+
 import {
   View,
   Text,
@@ -6,8 +7,10 @@ import {
   TouchableWithoutFeedback,
   TouchableOpacity,
 } from 'react-native';
+
 import Swipeable from 'react-native-gesture-handler/Swipeable';
 import Icon from 'react-native-vector-icons/FontAwesome';
+
 import dayjs from 'dayjs';
 
 import commonStyles from '../styles/common';
@@ -42,7 +45,8 @@ export default props => {
     return (
       <TouchableOpacity
         style={styles.right}
-        onPress={() => props.onDelete(props.id)}>
+        onPress={() => props.onDelete(props.id)}
+      >
         <Icon name="trash" size={30} color="#fff" />
       </TouchableOpacity>
     );
@@ -52,7 +56,8 @@ export default props => {
     <Swipeable
       renderLeftActions={getLeftContent}
       renderRightActions={getRightContent}
-      onSwipeableLeftOpen={() => props.onDelete(props.id)}>
+      onSwipeableLeftOpen={() => props.onDelete(props.id)}
+    >
       <View style={styles.container}>
         <TouchableWithoutFeedback onPress={() => props.onToggle(props.id)}>
           <View style={styles.checkContainer}>

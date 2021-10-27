@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+
 import {
   ImageBackground,
   Text,
@@ -7,10 +8,8 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
-import AuthInput from '../components/AuthInput';
-
 import loginImage from '../../assets/imgs/login.jpg';
-
+import AuthInput from '../components/AuthInput';
 import commonStyles from '../styles/common';
 
 export default class Auth extends Component {
@@ -72,7 +71,8 @@ export default class Auth extends Component {
         </View>
         <TouchableOpacity
           style={styles.toggle}
-          onPress={() => this.setState({stageNew: !this.state.stageNew})}>
+          onPress={() => this.setState({stageNew: !this.state.stageNew})}
+        >
           <Text style={styles.buttonText}>
             {this.state.stageNew
               ? 'Já possui conta?'

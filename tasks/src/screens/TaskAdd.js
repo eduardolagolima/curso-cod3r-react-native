@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+
 import {
   Modal,
   View,
@@ -8,8 +9,10 @@ import {
   TouchableOpacity,
   TextInput,
 } from 'react-native';
-import dayjs from 'dayjs';
+
 import DateTimePicker from '@react-native-community/datetimepicker';
+
+import dayjs from 'dayjs';
 
 import commonStyles from '../styles/common';
 
@@ -60,7 +63,8 @@ export default class TaskAdd extends Component {
         transparent={true}
         visible={this.props.isVisible}
         onRequestClose={this.props.onCancel}
-        animationType="slide">
+        animationType="slide"
+      >
         <TouchableWithoutFeedback onPress={this.props.onCancel}>
           <View style={styles.background} />
         </TouchableWithoutFeedback>

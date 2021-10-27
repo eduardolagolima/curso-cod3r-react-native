@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+
 import {
   Text,
   View,
@@ -7,15 +8,16 @@ import {
   FlatList,
   TouchableOpacity,
 } from 'react-native';
-import AsyncStorage from '@react-native-community/async-storage';
-import dayjs from 'dayjs';
+
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-import commonStyles from '../styles/common';
+import AsyncStorage from '@react-native-community/async-storage';
+
+import dayjs from 'dayjs';
+
 import todayImage from '../../assets/imgs/today.jpg';
-
 import Task from '../components/Task';
-
+import commonStyles from '../styles/common';
 import TaskAdd from './TaskAdd';
 
 const initialState = {
@@ -124,7 +126,8 @@ export default class TaskList extends Component {
         <TouchableOpacity
           activeOpacity={0.7}
           style={styles.addButton}
-          onPress={() => this.setState({showTaskAddModal: true})}>
+          onPress={() => this.setState({showTaskAddModal: true})}
+        >
           <Icon name="plus" size={20} color={commonStyles.colors.secondary} />
         </TouchableOpacity>
       </View>
