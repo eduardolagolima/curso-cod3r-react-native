@@ -48,6 +48,13 @@ export default class Auth extends Component {
 
   login = async () => {
     try {
+      const response = await axios.post(`${apiUrl}/login`, {
+        email: this.state.email,
+        password: this.state.password,
+      });
+
+      axios.defaults.headers.common.Authorization = `bearer: ${response.data.token}`;
+      this.props.navigation.navigate('Home');
     } catch (error) {
       showError(error);
     }
