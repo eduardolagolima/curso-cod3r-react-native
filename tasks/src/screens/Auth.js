@@ -18,9 +18,9 @@ import {showError, showSuccess} from '../utils/feedback';
 
 const initialState = {
   confirmPassword: '',
-  email: '',
+  email: 'eduardo@teste.com',
   name: '',
-  password: '',
+  password: '123456',
   stageNew: false,
 };
 
