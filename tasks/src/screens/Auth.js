@@ -61,6 +61,18 @@ export default class Auth extends Component {
   };
 
   render() {
+    const validations = [];
+
+    validations.push(this.state.email && this.state.email.includes('@'));
+    validations.push(this.state.password && this.state.password.length >= 6);
+
+    if (this.state.stageNew) {
+      validations.push(this.state.name && this.state.name.trim().length >= 3);
+      validations.push(this.state.password === this.state.confirmPassword);
+    }
+
+    const validForm = validations.reduce((acc, cur) => acc && cur);
+
     return (
       <ImageBackground source={loginImage} style={styles.background}>
         <Text style={styles.title}>Tasks</Text>
@@ -102,8 +114,11 @@ export default class Auth extends Component {
             onPress={() =>
               this.state.stageNew ? this.register() : this.login()
             }
+            disabled={!validForm}
           >
-            <View style={styles.button}>
+            <View
+              style={[styles.button, validForm ? {} : styles.disabledButton]}
+            >
               <Text style={styles.buttonText}>
                 {this.state.stageNew ? 'Registrar' : 'Entrar'}
               </Text>
@@ -143,6 +158,9 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontFamily: commonStyles.fontFamily,
     fontSize: 20,
+  },
+  disabledButton: {
+    backgroundColor: '#AAA',
   },
   formContainer: {
     backgroundColor: 'rgba(0, 0, 0, 0.8)',
