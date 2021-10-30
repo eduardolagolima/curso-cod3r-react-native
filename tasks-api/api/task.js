@@ -19,7 +19,7 @@ module.exports = (app) => {
     try {
       await app.database('tasks')
         .insert({
-          desc: req.body.desc,
+          description: req.body.description,
           estimateAt: req.body.estimateAt,
           userId: req.user.id,
         });
