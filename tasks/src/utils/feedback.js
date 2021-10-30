@@ -1,14 +1,7 @@
 import {Alert} from 'react-native';
 
 const showError = error => {
-  if (error.response && error.response.data) {
-    Alert.alert(
-      'Ops! Ocorreu um Problema!',
-      `Mensagem: ${error.response.data}`,
-    );
-  } else {
-    Alert.alert('Ops! Ocorreu um Problema!', `Mensagem: ${error}`);
-  }
+  Alert.alert('Ops! Ocorreu um problema!', error.response?.data ?? error);
 };
 
 const showSuccess = message => {
