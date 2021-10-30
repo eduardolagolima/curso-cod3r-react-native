@@ -16,5 +16,5 @@ consign()
 app.database = database;
 
 app.listen(3000, () => {
-  console.log('Api iniciada');
+  console.log('Api iniciada...');
 });
