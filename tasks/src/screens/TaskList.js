@@ -36,8 +36,8 @@ export default class TaskList extends Component {
   };
 
   componentDidMount = async () => {
-    await this.setInitialState();
-    await this.getTasks();
+    this.setInitialState();
+    this.getTasks();
   };
 
   getTasks = async () => {
@@ -76,35 +76,37 @@ export default class TaskList extends Component {
     );
   };
 
-  toggleTask = id => {
-    const tasks = [...this.state.tasks];
+  toggleTask = async id => {
+    try {
+      await axios.put(`${apiUrl}/tasks/${id}/toggle`);
 
-    tasks.forEach(task => {
-      if (task.id === id) {
-        task.doneAt = task.doneAt ? null : new Date();
-      }
-    });
-
-    this.setState({tasks}, this.filterTasks);
+      this.getTasks();
+    } catch (error) {
+      showError(error);
+    }
   };
 
-  addTask = newTask => {
-    const tasks = [...this.state.tasks];
+  addTask = async newTask => {
+    try {
+      await axios.post(`${apiUrl}/tasks`, {
+        description: newTask.description,
+        estimateAt: newTask.date,
+      });
 
-    tasks.push({
-      description: newTask.description,
-      doneAt: null,
-      estimateAt: newTask.date,
-      id: Math.random(),
-    });
-
-    this.setState({showTaskAddModal: false, tasks}, this.filterTasks);
+      this.setState({showTaskAddModal: false}, this.getTasks);
+    } catch (error) {
+      showError(error);
+    }
   };
 
-  deleteTask = id => {
-    const tasks = this.state.tasks.filter(task => task.id !== id);
+  deleteTask = async id => {
+    try {
+      await axios.delete(`${apiUrl}/tasks/${id}`);
 
-    this.setState({tasks}, this.filterTasks);
+      this.getTasks();
+    } catch (error) {
+      showError(error);
+    }
   };
 
   render() {
