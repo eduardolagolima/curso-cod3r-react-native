@@ -13,11 +13,14 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 
 import AsyncStorage from '@react-native-community/async-storage';
 
+import axios from 'axios';
 import dayjs from 'dayjs';
 
 import todayImage from '../../assets/imgs/today.jpg';
 import Task from '../components/Task';
 import commonStyles from '../styles/common';
+import {apiUrl} from '../utils/api';
+import {showError} from '../utils/feedback';
 import TaskAdd from './TaskAdd';
 
 const initialState = {
@@ -34,11 +37,26 @@ export default class TaskList extends Component {
 
   componentDidMount = async () => {
     await this.setInitialState();
+    await this.getTasks();
+  };
+
+  getTasks = async () => {
+    try {
+      const date = dayjs().endOf('day').format('YYYY-MM-DD HH:mm:ss');
+
+      const response = await axios.get(`${apiUrl}/tasks?date=${date}`);
+
+      this.setState({tasks: response.data}, this.filterTasks);
+    } catch (error) {
+      showError(error);
+    }
   };
 
   setInitialState = async () => {
-    const savedState = JSON.parse(await AsyncStorage.getItem('state'));
-    this.setState(savedState || initialState, this.filterTasks);
+    const savedState =
+      JSON.parse(await AsyncStorage.getItem('state')) || initialState;
+
+    this.setState({showDoneTasks: savedState.showDoneTasks}, this.filterTasks);
   };
 
   toggleFilter = () => {
@@ -51,7 +69,11 @@ export default class TaskList extends Component {
       : this.state.tasks.filter(task => !task.doneAt);
 
     this.setState({visibleTasks});
-    AsyncStorage.setItem('state', JSON.stringify(this.state));
+
+    AsyncStorage.setItem(
+      'state',
+      JSON.stringify({showDoneTasks: this.state.showDoneTasks}),
+    );
   };
 
   toggleTask = id => {
