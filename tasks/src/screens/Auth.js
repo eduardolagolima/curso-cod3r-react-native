@@ -55,10 +55,11 @@ export default class Auth extends Component {
         email: this.state.email,
         password: this.state.password,
       });
+      const {token, email, name} = response.data;
 
-      axios.defaults.headers.common.Authorization = `bearer ${response.data.token}`;
+      axios.defaults.headers.common.Authorization = `bearer ${token}`;
 
-      this.props.navigation.navigate('Home');
+      this.props.navigation.navigate('Home', {email, name});
     } catch (error) {
       showError(error);
     }

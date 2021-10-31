@@ -23,25 +23,39 @@ const drawerScreenOptions = {
   headerShown: false,
 };
 
-const DrawerNavigator = () => (
-  <Drawer.Navigator
-    screenOptions={drawerScreenOptions}
-    drawerContent={props => <Menu {...props} />}
-  >
-    <Drawer.Screen name="Today" options={{title: 'Hoje'}}>
-      {props => <TaskList {...props} title="Hoje" daysAhead={0} />}
-    </Drawer.Screen>
-    <Drawer.Screen name="Tomorrow" options={{title: 'Amanhã'}}>
-      {props => <TaskList {...props} title="Amanhã" daysAhead={1} />}
-    </Drawer.Screen>
-    <Drawer.Screen name="Week" options={{title: 'Semana'}}>
-      {props => <TaskList {...props} title="Semana" daysAhead={7} />}
-    </Drawer.Screen>
-    <Drawer.Screen name="Month" options={{title: 'Mês'}}>
-      {props => <TaskList {...props} title="Mês" daysAhead={30} />}
-    </Drawer.Screen>
-  </Drawer.Navigator>
-);
+const DrawerNavigator = propsDrawerNavigator => {
+  const {email, name} = propsDrawerNavigator.route.params;
+
+  return (
+    <Drawer.Navigator
+      screenOptions={drawerScreenOptions}
+      drawerContent={propsDrawerContent => (
+        <Menu {...propsDrawerContent} email={email} name={name} />
+      )}
+    >
+      <Drawer.Screen name="Today" options={{title: 'Hoje'}}>
+        {propsDrawerScreen => (
+          <TaskList {...propsDrawerScreen} title="Hoje" daysAhead={0} />
+        )}
+      </Drawer.Screen>
+      <Drawer.Screen name="Tomorrow" options={{title: 'Amanhã'}}>
+        {propsDrawerScreen => (
+          <TaskList {...propsDrawerScreen} title="Amanhã" daysAhead={1} />
+        )}
+      </Drawer.Screen>
+      <Drawer.Screen name="Week" options={{title: 'Semana'}}>
+        {propsDrawerScreen => (
+          <TaskList {...propsDrawerScreen} title="Semana" daysAhead={7} />
+        )}
+      </Drawer.Screen>
+      <Drawer.Screen name="Month" options={{title: 'Mês'}}>
+        {propsDrawerScreen => (
+          <TaskList {...propsDrawerScreen} title="Mês" daysAhead={30} />
+        )}
+      </Drawer.Screen>
+    </Drawer.Navigator>
+  );
+};
 
 export default () => (
   <NavigationContainer>
