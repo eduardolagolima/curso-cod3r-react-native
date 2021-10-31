@@ -8,6 +8,8 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
+import AsyncStorage from '@react-native-community/async-storage';
+
 import axios from 'axios';
 
 import loginImage from '../../assets/images/login.jpg';
@@ -56,6 +58,8 @@ export default class Auth extends Component {
         password: this.state.password,
       });
       const {token, email, name} = response.data;
+
+      AsyncStorage.setItem('userData', JSON.stringify({email, name, token}));
 
       axios.defaults.headers.common.Authorization = `bearer ${token}`;
 
