@@ -5,13 +5,29 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 import Auth from '../screens/Auth';
+import Menu from '../screens/Menu';
 import TaskList from '../screens/TaskList';
+
+import commonStyles from '../styles/common';
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
 
+const drawerScreenOptions = {
+  drawerActiveTintColor: '#080',
+  drawerLabelStyle: {
+    fontFamily: commonStyles.fontFamily,
+    fontSize: 20,
+    fontWeight: 'normal',
+  },
+  headerShown: false,
+};
+
 const DrawerNavigator = () => (
-  <Drawer.Navigator screenOptions={{headerShown: false}}>
+  <Drawer.Navigator
+    screenOptions={drawerScreenOptions}
+    drawerContent={props => <Menu {...props} />}
+  >
     <Drawer.Screen name="Today" options={{title: 'Hoje'}}>
       {props => <TaskList {...props} title="Hoje" daysAhead={0} />}
     </Drawer.Screen>
