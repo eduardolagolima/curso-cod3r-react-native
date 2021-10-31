@@ -42,7 +42,10 @@ export default class TaskList extends Component {
 
   getTasks = async () => {
     try {
-      const date = dayjs().endOf('day').format('YYYY-MM-DD HH:mm:ss');
+      const date = dayjs()
+        .add(this.props.daysAhead, 'day')
+        .endOf('day')
+        .format('YYYY-MM-DD HH:mm:ss');
 
       const response = await axios.get(`${apiUrl}/tasks?date=${date}`);
 
@@ -130,7 +133,7 @@ export default class TaskList extends Component {
             </TouchableOpacity>
           </View>
           <View style={styles.titleBar}>
-            <Text style={styles.title}>Hoje</Text>
+            <Text style={styles.title}>{this.props.title}</Text>
             <Text style={styles.subtitle}>{today}</Text>
           </View>
         </ImageBackground>
