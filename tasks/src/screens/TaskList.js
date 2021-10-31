@@ -16,7 +16,10 @@ import AsyncStorage from '@react-native-community/async-storage';
 import axios from 'axios';
 import dayjs from 'dayjs';
 
+import monthImage from '../../assets/images/month.jpg';
 import todayImage from '../../assets/images/today.jpg';
+import tomorrowImage from '../../assets/images/tomorrow.jpg';
+import weekImage from '../../assets/images/week.jpg';
 import Task from '../components/Task';
 import commonStyles from '../styles/common';
 import {apiUrl} from '../utils/api';
@@ -112,6 +115,22 @@ export default class TaskList extends Component {
     }
   };
 
+  getCustomStyle = () => {
+    const {today, tomorrow, week, month} = commonStyles.colors;
+    const assets = (color, image) => ({color, image});
+
+    switch (this.props.daysAhead) {
+      case 0:
+        return assets(today, todayImage);
+      case 1:
+        return assets(tomorrow, tomorrowImage);
+      case 7:
+        return assets(week, weekImage);
+      case 30:
+        return assets(month, monthImage);
+    }
+  };
+
   render() {
     const today = dayjs().format('ddd, D [de] MMMM');
 
@@ -122,7 +141,10 @@ export default class TaskList extends Component {
           onCancel={() => this.setState({showTaskAddModal: false})}
           onSave={this.addTask}
         />
-        <ImageBackground source={todayImage} style={styles.background}>
+        <ImageBackground
+          source={this.getCustomStyle().image}
+          style={styles.background}
+        >
           <View style={styles.iconBar}>
             <TouchableOpacity
               onPress={() => this.props.navigation.openDrawer()}
@@ -161,7 +183,10 @@ export default class TaskList extends Component {
         </View>
         <TouchableOpacity
           activeOpacity={0.7}
-          style={styles.addButton}
+          style={[
+            styles.addButton,
+            {backgroundColor: this.getCustomStyle().color},
+          ]}
           onPress={() => this.setState({showTaskAddModal: true})}
         >
           <Icon name="plus" size={20} color={commonStyles.colors.secondary} />
@@ -174,7 +199,6 @@ export default class TaskList extends Component {
 const styles = StyleSheet.create({
   addButton: {
     alignItems: 'center',
-    backgroundColor: commonStyles.colors.today,
     borderRadius: 25,
     bottom: 20,
     height: 50,
