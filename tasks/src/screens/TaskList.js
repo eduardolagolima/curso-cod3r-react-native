@@ -16,7 +16,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 import axios from 'axios';
 import dayjs from 'dayjs';
 
-import todayImage from '../../assets/imgs/today.jpg';
+import todayImage from '../../assets/images/today.jpg';
 import Task from '../components/Task';
 import commonStyles from '../styles/common';
 import {apiUrl} from '../utils/api';

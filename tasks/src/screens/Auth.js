@@ -10,7 +10,7 @@ import {
 
 import axios from 'axios';
 
-import loginImage from '../../assets/imgs/login.jpg';
+import loginImage from '../../assets/images/login.jpg';
 import AuthInput from '../components/AuthInput';
 import commonStyles from '../styles/common';
 import {apiUrl} from '../utils/api';
