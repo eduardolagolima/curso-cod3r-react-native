@@ -20,10 +20,14 @@ import monthImage from '../../assets/images/month.jpg';
 import todayImage from '../../assets/images/today.jpg';
 import tomorrowImage from '../../assets/images/tomorrow.jpg';
 import weekImage from '../../assets/images/week.jpg';
+
 import Task from '../components/Task';
+
 import commonStyles from '../styles/common';
+
 import {apiUrl} from '../utils/api';
 import {showError} from '../utils/feedback';
+
 import TaskAdd from './TaskAdd';
 
 const initialState = {
@@ -115,7 +119,7 @@ export default class TaskList extends Component {
     }
   };
 
-  getCustomStyle = () => {
+  getAssetsByVisualization = () => {
     const {today, tomorrow, week, month} = commonStyles.colors;
     const assets = (color, image) => ({color, image});
 
@@ -142,7 +146,7 @@ export default class TaskList extends Component {
           onSave={this.addTask}
         />
         <ImageBackground
-          source={this.getCustomStyle().image}
+          source={this.getAssetsByVisualization().image}
           style={styles.background}
         >
           <View style={styles.iconBar}>
@@ -185,7 +189,7 @@ export default class TaskList extends Component {
           activeOpacity={0.7}
           style={[
             styles.addButton,
-            {backgroundColor: this.getCustomStyle().color},
+            {backgroundColor: this.getAssetsByVisualization().color},
           ]}
           onPress={() => this.setState({showTaskAddModal: true})}
         >
