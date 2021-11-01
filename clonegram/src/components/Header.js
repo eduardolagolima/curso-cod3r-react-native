@@ -3,7 +3,7 @@ import {Text, StyleSheet, View, Image} from 'react-native';
 
 import iconImage from '../../assets/images/icon.png';
 
-export default class Header extends Component {
+class Header extends Component {
   render() {
     return (
       <View style={styles.container}>
@@ -38,3 +38,5 @@ const styles = StyleSheet.create({
     fontSize: 28,
   },
 });
+
+export default Header;
