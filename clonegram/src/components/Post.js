@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 
 import {StyleSheet, View, Image, Dimensions} from 'react-native';
 
-import AddComment from './AddComent';
+import AddComment from './AddComment';
 import Author from './Author';
 import Comments from './Comments';
 
