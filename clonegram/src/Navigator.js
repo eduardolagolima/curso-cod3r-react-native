@@ -5,11 +5,12 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {NavigationContainer} from '@react-navigation/native';
 
+import AddPicture from './screens/AddPicture';
 import Feed from './screens/Feed';
 
 const tabScreens = Object.freeze({
   ADD_PICTURE: {
-    component: Feed,
+    component: AddPicture,
     name: 'AddPicture',
     title: 'Add Picture',
   },
