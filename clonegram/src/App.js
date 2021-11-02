@@ -6,12 +6,25 @@ import Post from './components/Post';
 
 import fenceImage from '../assets/images/fence.jpg';
 
-const App = () => (
-  <View style={styles.container}>
-    <Header />
-    <Post image={fenceImage} />
-  </View>
-);
+const App = () => {
+  const testComments = [
+    {
+      nickname: 'João Souza',
+      comment: 'Comentário 123456',
+    },
+    {
+      nickname: 'Pedro Pereira Silva',
+      comment: 'Comentário 789',
+    },
+  ];
+
+  return (
+    <View style={styles.container}>
+      <Header />
+      <Post image={fenceImage} comments={testComments} />
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
