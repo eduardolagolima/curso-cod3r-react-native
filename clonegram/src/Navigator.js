@@ -7,6 +7,7 @@ import {NavigationContainer} from '@react-navigation/native';
 
 import AddPicture from './screens/AddPicture';
 import Feed from './screens/Feed';
+import Profile from './screens/Profile';
 
 const tabScreens = Object.freeze({
   ADD_PICTURE: {
@@ -20,7 +21,7 @@ const tabScreens = Object.freeze({
     title: 'Feed',
   },
   PROFILE: {
-    component: Feed,
+    component: Profile,
     name: 'Profile',
     title: 'Profile',
   },
@@ -40,6 +41,7 @@ const Navigator = () => {
       <Tab.Navigator
         initialRouteName={tabScreens.FEED.name}
         screenOptions={({route}) => ({
+          headerShown: false,
           tabBarIcon: ({color}) => (
             <Icon name={tabBarIcons[route.name]} size={30} color={color} />
           ),
