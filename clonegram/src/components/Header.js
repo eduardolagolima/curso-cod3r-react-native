@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+
 import {Text, StyleSheet, View, Image} from 'react-native';
 
 import iconImage from '../../assets/images/icon.png';
@@ -18,24 +19,24 @@ class Header extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    padding: 10,
     borderBottomWidth: 1,
     borderColor: '#bbb',
-  },
-  rowContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    padding: 10,
   },
   image: {
     height: 30,
-    width: 30,
     resizeMode: 'contain',
+    width: 30,
+  },
+  rowContainer: {
+    alignItems: 'center',
+    flexDirection: 'row',
   },
   title: {
     color: '#000',
     fontFamily: 'shelter',
-    height: 30,
     fontSize: 28,
+    height: 30,
   },
 });
 

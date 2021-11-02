@@ -2,9 +2,9 @@ import React, {Component} from 'react';
 
 import {StyleSheet, View, Image, Dimensions} from 'react-native';
 
+import AddComment from './AddComent';
 import Author from './Author';
 import Comments from './Comments';
-import AddComment from './AddComent';
 
 class Post extends Component {
   render() {
@@ -24,9 +24,9 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   image: {
-    width: Dimensions.get('window').width,
     height: (Dimensions.get('window').width * 3) / 4,
     resizeMode: 'contain',
+    width: Dimensions.get('window').width,
   },
 });
 

@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+
 import {
   View,
   Text,
@@ -7,6 +8,7 @@ import {
   TouchableWithoutFeedback,
   Alert,
 } from 'react-native';
+
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 class AddComment extends Component {
@@ -56,19 +58,19 @@ class AddComment extends Component {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
+  caption: {
+    color: '#CCC',
+    fontSize: 12,
+    marginLeft: 10,
   },
   commentArea: {
+    alignItems: 'center',
     flex: 1,
     flexDirection: 'row',
-    alignItems: 'center',
     margin: 10,
   },
-  caption: {
-    marginLeft: 10,
-    fontSize: 12,
-    color: '#CCC',
+  container: {
+    flex: 1,
   },
   input: {
     width: '90%',

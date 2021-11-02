@@ -17,21 +17,21 @@ const Author = props => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
   avatar: {
-    width: 30,
-    height: 30,
     borderRadius: 15,
+    height: 30,
     marginHorizontal: 10,
+    width: 30,
+  },
+  container: {
+    alignItems: 'center',
+    flexDirection: 'row',
   },
   nickname: {
     color: '#444',
-    marginVertical: 10,
     fontSize: 15,
     fontWeight: 'bold',
+    marginVertical: 10,
   },
 });
 

@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+
 import {View, Text, StyleSheet} from 'react-native';
 
 class Comments extends Component {
@@ -19,21 +20,21 @@ class Comments extends Component {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    margin: 10,
+  comment: {
+    color: '#555',
   },
   commentContainer: {
     flexDirection: 'row',
     marginTop: 5,
   },
-  nickname: {
-    marginLeft: 5,
-    fontWeight: 'bold',
-    color: '#444',
+  container: {
+    flex: 1,
+    margin: 10,
   },
-  comment: {
-    color: '#555',
+  nickname: {
+    color: '#444',
+    fontWeight: 'bold',
+    marginLeft: 5,
   },
 });
 

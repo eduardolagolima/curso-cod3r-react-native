@@ -1,20 +1,21 @@
 import React from 'react';
+
 import {View, StyleSheet} from 'react-native';
+
+import fenceImage from '../assets/images/fence.jpg';
 
 import Header from './components/Header';
 import Post from './components/Post';
 
-import fenceImage from '../assets/images/fence.jpg';
-
 const App = () => {
   const testComments = [
     {
-      nickname: 'João Souza',
       comment: 'Comentário 123456',
+      nickname: 'João Souza',
     },
     {
-      nickname: 'Pedro Pereira Silva',
       comment: 'Comentário 789',
+      nickname: 'Pedro Pereira Silva',
     },
   ];
 
