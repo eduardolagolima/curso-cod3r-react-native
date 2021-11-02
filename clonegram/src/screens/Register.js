@@ -8,19 +8,22 @@ import {
   TextInput,
 } from 'react-native';
 
-class Login extends Component {
+class Register extends Component {
   state = {
     email: '',
+    name: '',
     password: '',
-  };
-
-  login = () => {
-    this.props.navigation.navigate('Profile');
   };
 
   render() {
     return (
       <View style={styles.container}>
+        <TextInput
+          placeholder="Nome"
+          style={styles.input}
+          value={this.state.name}
+          onChangeText={name => this.setState({name})}
+        />
         <TextInput
           placeholder="Email"
           style={styles.input}
@@ -35,15 +38,15 @@ class Login extends Component {
           value={this.state.password}
           onChangeText={password => this.setState({password})}
         />
-        <TouchableOpacity onPress={this.login} style={styles.buttom}>
-          <Text style={styles.buttomText}>Logar</Text>
+        <TouchableOpacity onPress={() => {}} style={styles.buttom}>
+          <Text style={styles.buttomText}>Registrar</Text>
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => {
-            this.props.navigation.navigate('Register');
+            this.props.navigation.navigate('Login');
           }}
           style={styles.buttom}>
-          <Text style={styles.buttomText}>Não possui uma conta?</Text>
+          <Text style={styles.buttomText}>Já possui uma conta?</Text>
         </TouchableOpacity>
       </View>
     );
@@ -71,8 +74,9 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     height: 40,
     marginTop: 20,
+    paddingLeft: 15,
     width: '90%',
   },
 });
 
-export default Login;
+export default Register;
