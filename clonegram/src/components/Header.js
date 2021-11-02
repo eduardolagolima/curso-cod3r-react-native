@@ -22,6 +22,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderColor: '#bbb',
     padding: 10,
+    width: '100%',
   },
   image: {
     height: 30,
