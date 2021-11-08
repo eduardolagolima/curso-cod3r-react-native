@@ -9,9 +9,7 @@ import AuthStackNavigator from './AuthStackNavigator';
 const Stack = createNativeStackNavigator();
 
 const AuthOrProfileStackNavigator = () => (
-  <Stack.Navigator
-    initialRouteName="Profile"
-    screenOptions={{headerShown: false}}>
+  <Stack.Navigator initialRouteName="Auth" screenOptions={{headerShown: false}}>
     <Stack.Screen component={AuthStackNavigator} name="Auth" />
     <Stack.Screen component={Profile} name="Profile" />
   </Stack.Navigator>
