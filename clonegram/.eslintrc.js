@@ -13,7 +13,7 @@ module.exports = {
         groups: [
           '/^react$/',
           '/^react-native$/',
-          '/^react-native/',
+          '/^react-/',
           '/^@react/',
           'module',
           '/assets/',

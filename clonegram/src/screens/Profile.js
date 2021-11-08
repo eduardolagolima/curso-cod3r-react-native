@@ -3,7 +3,6 @@ import React, {Component} from 'react';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 
 import {Gravatar} from 'react-native-gravatar';
-
 import {connect} from 'react-redux';
 
 import {logout} from '../store/actions/user';
