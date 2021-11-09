@@ -56,6 +56,16 @@ class AddPost extends Component {
   };
 
   render() {
+    if (!this.props.name) {
+      return (
+        <View style={styles.guestContainer}>
+          <Text style={styles.guestText}>
+            Você precisa estar logado para adicionar um novo post!
+          </Text>
+        </View>
+      );
+    }
+
     return (
       <ScrollView>
         <View style={styles.container}>
@@ -94,6 +104,16 @@ const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
     flex: 1,
+  },
+  guestContainer: {
+    alignItems: 'center',
+    flex: 1,
+    justifyContent: 'center',
+  },
+  guestText: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    textAlign: 'center',
   },
   image: {
     height: Dimensions.get('window').width / 2,
