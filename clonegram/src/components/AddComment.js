@@ -10,6 +10,9 @@ import {
 } from 'react-native';
 
 import Icon from 'react-native-vector-icons/FontAwesome';
+import {connect} from 'react-redux';
+
+import {addComment} from '../store/actions/post';
 
 class AddComment extends Component {
   state = {
@@ -18,7 +21,15 @@ class AddComment extends Component {
   };
 
   handleAddComment = () => {
-    Alert.alert('Adicionado...', this.state.comment);
+    this.props.onAddComment({
+      comment: {
+        comment: this.state.comment,
+        nickname: this.props.name,
+      },
+      postId: this.props.postId,
+    });
+
+    this.setState({comment: '', editMode: false});
   };
 
   render() {
@@ -77,4 +88,16 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AddComment;
+const mapStateToProps = ({usersReducer}) => {
+  return {
+    name: usersReducer.name,
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onAddComment: payload => dispatch(addComment(payload)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddComment);
