@@ -9,12 +9,14 @@ import {
   Image,
   Dimensions,
   ScrollView,
-  Alert,
 } from 'react-native';
 
 import {launchImageLibrary} from 'react-native-image-picker';
+import {connect} from 'react-redux';
 
-class AddPicture extends Component {
+import {addPost} from '../store/actions/post';
+
+class AddPost extends Component {
   state = {
     comment: '',
     image: null,
@@ -36,7 +38,21 @@ class AddPicture extends Component {
   };
 
   save = async () => {
-    Alert.alert('Imagem adicionada!', this.state.comment);
+    this.props.onAddPost({
+      comments: [
+        {
+          comment: this.state.comment,
+          nickname: this.props.name,
+        },
+      ],
+      email: this.props.email,
+      id: Math.random(),
+      image: this.state.image,
+      nickname: this.props.name,
+    });
+
+    this.setState({comment: null, image: null});
+    this.props.navigation.navigate('Feed');
   };
 
   render() {
@@ -101,4 +117,17 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AddPicture;
+const mapStateToProps = ({usersReducer}) => {
+  return {
+    email: usersReducer.email,
+    name: usersReducer.name,
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onAddPost: post => dispatch(addPost(post)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddPost);

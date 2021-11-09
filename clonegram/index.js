@@ -6,10 +6,10 @@ import {Provider} from 'react-redux';
 
 import {name as appName} from './app.json';
 import Navigator from './src/routes/Navigator';
-import storeConfig from './src/store/storeConfig';
+import {store} from './src/store/config';
 
 const Redux = () => (
-  <Provider store={storeConfig()}>
+  <Provider store={store()}>
     <Navigator />
   </Provider>
 );
