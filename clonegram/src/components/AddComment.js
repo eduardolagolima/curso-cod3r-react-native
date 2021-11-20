@@ -46,7 +46,8 @@ class AddComment extends Component {
             onSubmitEditing={this.handleAddComment}
           />
           <TouchableWithoutFeedback
-            onPress={() => this.setState({editMode: false})}>
+            onPress={() => this.setState({editMode: false})}
+          >
             <Icon name="times" size={15} color="#555" />
           </TouchableWithoutFeedback>
         </View>
@@ -54,7 +55,8 @@ class AddComment extends Component {
     } else {
       commentArea = (
         <TouchableWithoutFeedback
-          onPress={() => this.setState({editMode: true})}>
+          onPress={() => this.setState({editMode: true})}
+        >
           <View style={styles.commentArea}>
             <Icon name="comment-o" size={25} color="#555" />
             <Text style={styles.caption}>Adicione um comentário...</Text>

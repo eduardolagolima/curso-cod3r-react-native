@@ -53,7 +53,8 @@ class Login extends Component {
           onPress={() => {
             this.props.navigation.navigate('Register');
           }}
-          style={styles.buttom}>
+          style={styles.buttom}
+        >
           <Text style={styles.buttomText}>Não possui uma conta?</Text>
         </TouchableOpacity>
       </View>

@@ -92,7 +92,8 @@ class AddPost extends Component {
               styles.button,
               this.props.loading ? styles.buttonDisabled : null,
             ]}
-            disabled={this.props.loading}>
+            disabled={this.props.loading}
+          >
             <Text style={styles.buttonText}>Salvar</Text>
           </TouchableOpacity>
         </View>

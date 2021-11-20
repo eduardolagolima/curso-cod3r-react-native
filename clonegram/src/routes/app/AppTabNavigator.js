@@ -26,7 +26,8 @@ const AppTabNavigator = () => (
         <Icon name={icons[route.name]} size={30} color={color} />
       ),
       tabBarShowLabel: false,
-    })}>
+    })}
+  >
     <Tab.Screen component={Feed} name="Feed" />
     <Tab.Screen component={AddPost} name="AddPost" />
     <Tab.Screen component={AuthOrProfileStackNavigator} name="AuthOrProfile" />
