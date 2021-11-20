@@ -1,6 +1,6 @@
 import api from '../../utils/api';
 
-import {SET_POSTS, ADD_COMMENT, CREATING_POST, POST_CREATED} from './types';
+import {SET_POSTS, CREATING_POST, POST_CREATED} from './types';
 
 export const addPost = post => {
   return async dispatch => {
