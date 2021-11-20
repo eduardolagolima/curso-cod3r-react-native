@@ -1,5 +1,6 @@
 import api from '../../utils/api';
 
+import {setMessage} from './message';
 import {SET_POSTS, CREATING_POST, POST_CREATED} from './types';
 
 export const addPost = post => {
@@ -10,7 +11,7 @@ export const addPost = post => {
       dispatch(fetchPosts());
       dispatch(postCreated());
     } catch (error) {
-      console.log(error);
+      dispatch(setMessage({text: error.toString(), title: 'Erro'}));
     }
   };
 };
@@ -24,7 +25,7 @@ export const addComment = payload => {
       await api.patch(`/posts/${payload.postId}.json`, {comments});
       dispatch(fetchPosts());
     } catch (error) {
-      console.log(error);
+      dispatch(setMessage({text: error.toString(), title: 'Erro'}));
     }
   };
 };
@@ -50,7 +51,7 @@ export const fetchPosts = () => {
       }
       dispatch(setPosts(posts.reverse()));
     } catch (error) {
-      console.log(error);
+      dispatch(setMessage({text: error.toString(), title: 'Erro'}));
     }
   };
 };

@@ -1,6 +1,7 @@
 import api from '../../utils/api';
 import authenticationApi from '../../utils/authenticationApi';
 
+import {setMessage} from './message';
 import {
   USER_LOGGED_IN,
   USER_LOGGED_OUT,
@@ -36,9 +37,11 @@ export const createUser = user => {
         name: user.name,
       });
 
-      console.log('Usuário criado com sucesso');
+      dispatch(
+        setMessage({text: 'Usuário criado com sucesso', title: 'Sucesso'}),
+      );
     } catch (error) {
-      console.log(error);
+      dispatch(setMessage({text: error.toString(), title: 'Erro'}));
     }
   };
 };
@@ -79,7 +82,7 @@ export const login = user => {
       dispatch(userLogged(user));
       dispatch(userLoaded());
     } catch (error) {
-      console.log(error);
+      dispatch(setMessage({text: error.toString(), title: 'Erro'}));
     }
   };
 };
