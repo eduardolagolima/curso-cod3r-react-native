@@ -14,9 +14,9 @@ import {login} from '../store/actions/user';
 
 class Login extends Component {
   state = {
-    email: '',
+    email: 'eduardo@teste.com',
     name: 'Temporário',
-    password: '',
+    password: '123456',
   };
 
   componentDidUpdate = prevProps => {

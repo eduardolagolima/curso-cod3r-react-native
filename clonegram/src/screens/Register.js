@@ -14,9 +14,9 @@ import {createUser} from '../store/actions/user';
 
 class Register extends Component {
   state = {
-    email: '',
-    name: '',
-    password: '',
+    email: 'eduardo@teste.com',
+    name: 'Eduardo',
+    password: '123456',
   };
 
   render() {
