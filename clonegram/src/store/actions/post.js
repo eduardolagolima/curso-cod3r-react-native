@@ -16,9 +16,16 @@ export const addPost = post => {
 };
 
 export const addComment = payload => {
-  return {
-    payload,
-    type: ADD_COMMENT,
+  return async dispatch => {
+    try {
+      const response = await api.get(`/posts/${payload.postId}.json`);
+      const comments = response.data.comments ?? [];
+      comments.push(payload.comment);
+      await api.patch(`/posts/${payload.postId}.json`, {comments});
+      dispatch(fetchPosts());
+    } catch (error) {
+      console.log(error);
+    }
   };
 };
 
