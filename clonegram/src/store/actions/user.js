@@ -25,6 +25,8 @@ export const logout = () => {
 export const createUser = user => {
   return async dispatch => {
     try {
+      dispatch(loadingUser());
+
       const newUserData = (
         await authenticationApi.post('/signupNewUser', {
           email: user.email,
@@ -37,9 +39,8 @@ export const createUser = user => {
         name: user.name,
       });
 
-      dispatch(
-        setMessage({text: 'Usuário criado com sucesso', title: 'Sucesso'}),
-      );
+      dispatch(userLogged(user));
+      dispatch(userLoaded());
     } catch (error) {
       dispatch(setMessage({text: error.toString(), title: 'Erro'}));
     }
@@ -77,7 +78,6 @@ export const login = user => {
         await api.get(`/users/${verifyPasswordData.localId}.json`)
       ).data;
 
-      delete user.password;
       user.name = userData.name;
       dispatch(userLogged(user));
       dispatch(userLoaded());
