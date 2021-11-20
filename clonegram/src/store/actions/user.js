@@ -39,8 +39,7 @@ export const createUser = user => {
         name: user.name,
       });
 
-      dispatch(userLogged(user));
-      dispatch(userLoaded());
+      dispatch(login(user));
     } catch (error) {
       dispatch(setMessage({text: error.toString(), title: 'Erro'}));
     }
