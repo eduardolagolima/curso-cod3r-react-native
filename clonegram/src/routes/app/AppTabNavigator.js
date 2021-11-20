@@ -4,10 +4,10 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
-import AddPost from '../screens/AddPost';
-import Feed from '../screens/Feed';
+import AddPost from '../../screens/AddPost';
+import Feed from '../../screens/Feed';
 
-import AuthOrProfileStackNavigator from './AuthOrProfileStackNavigator';
+import AuthOrProfileStackNavigator from './auth-or-profile/AuthOrProfileStackNavigator';
 
 const Tab = createBottomTabNavigator();
 
@@ -17,7 +17,7 @@ const icons = Object.freeze({
   Feed: 'home',
 });
 
-const TabNavigator = () => (
+const AppTabNavigator = () => (
   <Tab.Navigator
     initialRouteName="Feed"
     screenOptions={({route}) => ({
@@ -33,4 +33,4 @@ const TabNavigator = () => (
   </Tab.Navigator>
 );
 
-export default TabNavigator;
+export default AppTabNavigator;

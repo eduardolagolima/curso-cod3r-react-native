@@ -2,9 +2,9 @@ import React from 'react';
 
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
-import Profile from '../screens/Profile';
+import Profile from '../../../screens/Profile';
 
-import AuthStackNavigator from './AuthStackNavigator';
+import AuthStackNavigator from './auth/AuthStackNavigator';
 
 const Stack = createNativeStackNavigator();
 
