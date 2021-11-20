@@ -150,11 +150,11 @@ const styles = StyleSheet.create({
   },
 });
 
-const mapStateToProps = ({usersReducer, postsReducer}) => {
+const mapStateToProps = ({user, posts}) => {
   return {
-    email: usersReducer.email,
-    loading: postsReducer.isUploading,
-    name: usersReducer.name,
+    email: user.email,
+    loading: posts.isUploading,
+    name: user.name,
   };
 };
 

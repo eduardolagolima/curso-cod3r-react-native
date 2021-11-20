@@ -70,10 +70,10 @@ const styles = StyleSheet.create({
   },
 });
 
-const mapStateToProps = ({usersReducer}) => {
+const mapStateToProps = ({user}) => {
   return {
-    email: usersReducer.email,
-    name: usersReducer.name,
+    email: user.email,
+    name: user.name,
   };
 };
 

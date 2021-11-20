@@ -1,14 +1,14 @@
 import {createStore, combineReducers, compose, applyMiddleware} from 'redux';
 import thunk from 'redux-thunk';
 
-import messagesReducer from './reducers/messages';
-import postsReducer from './reducers/posts';
-import usersReducer from './reducers/users';
+import message from './reducers/message';
+import posts from './reducers/posts';
+import user from './reducers/user';
 
 const reducers = combineReducers({
-  messagesReducer,
-  postsReducer,
-  usersReducer,
+  message,
+  posts,
+  user,
 });
 
 const store = () => {

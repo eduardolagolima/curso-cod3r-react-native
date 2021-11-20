@@ -20,10 +20,10 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = ({messagesReducer}) => {
+const mapStateToProps = ({message}) => {
   return {
-    text: messagesReducer.text,
-    title: messagesReducer.title,
+    text: message.text,
+    title: message.title,
   };
 };
 

@@ -37,9 +37,9 @@ const styles = StyleSheet.create({
   },
 });
 
-const mapStateToProps = ({postsReducer}) => {
+const mapStateToProps = ({posts}) => {
   return {
-    posts: postsReducer.posts,
+    posts: posts.posts,
   };
 };
 

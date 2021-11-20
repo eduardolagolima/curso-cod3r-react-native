@@ -86,9 +86,9 @@ const styles = StyleSheet.create({
   },
 });
 
-const mapStateToProps = ({usersReducer}) => {
+const mapStateToProps = ({user}) => {
   return {
-    isLoading: usersReducer.isLoading,
+    isLoading: user.isLoading,
   };
 };
 
