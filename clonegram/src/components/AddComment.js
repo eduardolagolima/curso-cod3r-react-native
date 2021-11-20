@@ -6,7 +6,6 @@ import {
   StyleSheet,
   TextInput,
   TouchableWithoutFeedback,
-  Alert,
 } from 'react-native';
 
 import Icon from 'react-native-vector-icons/FontAwesome';
