@@ -16,25 +16,32 @@ import {connect} from 'react-redux';
 
 import {addPost} from '../store/actions/post';
 
+const initialState = {
+  comment: '',
+  image: null,
+};
+
 class AddPost extends Component {
   state = {
-    comment: '',
-    image: null,
+    ...initialState,
+  };
+
+  clearState = () => this.setState({...initialState});
+
+  componentDidUpdate = prevProps => {
+    if (prevProps.loading && !this.props.loading) {
+      this.clearState();
+      this.props.navigation.navigate('Feed');
+    }
   };
 
   pickImage = () => {
-    launchImageLibrary(
-      {
-        maxHeight: 600,
-        maxWidth: 800,
-      },
-      response => {
-        if (!response.didCancel) {
-          const {uri} = response.assets[0];
-          this.setState({image: {uri: uri}});
-        }
-      },
-    );
+    launchImageLibrary({maxHeight: 600, maxWidth: 800}, response => {
+      if (!response.didCancel) {
+        const {uri} = response.assets[0];
+        this.setState({image: {uri: uri}});
+      }
+    });
   };
 
   save = async () => {
@@ -50,9 +57,6 @@ class AddPost extends Component {
       image: this.state.image,
       nickname: this.props.name,
     });
-
-    this.setState({comment: null, image: null});
-    this.props.navigation.navigate('Feed');
   };
 
   render() {
@@ -73,8 +77,8 @@ class AddPost extends Component {
           <View style={styles.imageContainer}>
             <Image source={this.state.image} style={styles.image} />
           </View>
-          <TouchableOpacity onPress={this.pickImage} style={styles.buttom}>
-            <Text style={styles.buttomText}>Escolha a foto</Text>
+          <TouchableOpacity onPress={this.pickImage} style={styles.button}>
+            <Text style={styles.buttonText}>Escolha a foto</Text>
           </TouchableOpacity>
           <TextInput
             placeholder="Algum comentário para a foto?"
@@ -82,8 +86,14 @@ class AddPost extends Component {
             value={this.state.comment}
             onChangeText={comment => this.setState({comment})}
           />
-          <TouchableOpacity onPress={this.save} style={styles.buttom}>
-            <Text style={styles.buttomText}>Salvar</Text>
+          <TouchableOpacity
+            onPress={this.save}
+            style={[
+              styles.button,
+              this.props.loading ? styles.buttonDisabled : null,
+            ]}
+            disabled={this.props.loading}>
+            <Text style={styles.buttonText}>Salvar</Text>
           </TouchableOpacity>
         </View>
       </ScrollView>
@@ -92,13 +102,16 @@ class AddPost extends Component {
 }
 
 const styles = StyleSheet.create({
-  buttom: {
+  button: {
     backgroundColor: '#4286f4',
     marginTop: 30,
     padding: 10,
   },
-  buttomText: {
-    color: '#FFF',
+  buttonDisabled: {
+    backgroundColor: '#aaa',
+  },
+  buttonText: {
+    color: '#fff',
     fontSize: 20,
   },
   container: {
@@ -137,9 +150,10 @@ const styles = StyleSheet.create({
   },
 });
 
-const mapStateToProps = ({usersReducer}) => {
+const mapStateToProps = ({usersReducer, postsReducer}) => {
   return {
     email: usersReducer.email,
+    loading: postsReducer.isUploading,
     name: usersReducer.name,
   };
 };

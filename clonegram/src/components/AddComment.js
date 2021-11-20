@@ -70,7 +70,7 @@ class AddComment extends Component {
 
 const styles = StyleSheet.create({
   caption: {
-    color: '#CCC',
+    color: '#ccc',
     fontSize: 12,
     marginLeft: 10,
   },

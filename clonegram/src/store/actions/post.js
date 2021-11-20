@@ -1,12 +1,14 @@
 import api from '../../utils/api';
 
-import {SET_POSTS, ADD_COMMENT} from './types';
+import {SET_POSTS, ADD_COMMENT, CREATING_POST, POST_CREATED} from './types';
 
 export const addPost = post => {
   return async dispatch => {
     try {
-      const response = api.post('/posts.json', {...post});
-      console.log(response.data);
+      dispatch(creatingPost());
+      await api.post('/posts.json', {...post});
+      dispatch(fetchPosts());
+      dispatch(postCreated());
     } catch (error) {
       console.log(error);
     }
@@ -39,9 +41,21 @@ export const fetchPosts = () => {
           id: key,
         });
       }
-      dispatch(setPosts(posts));
+      dispatch(setPosts(posts.reverse()));
     } catch (error) {
       console.log(error);
     }
+  };
+};
+
+export const creatingPost = () => {
+  return {
+    type: CREATING_POST,
+  };
+};
+
+export const postCreated = () => {
+  return {
+    type: POST_CREATED,
   };
 };

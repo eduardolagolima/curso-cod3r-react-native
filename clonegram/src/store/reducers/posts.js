@@ -1,6 +1,12 @@
-import {SET_POSTS, ADD_COMMENT} from '../actions/types';
+import {
+  SET_POSTS,
+  ADD_COMMENT,
+  CREATING_POST,
+  POST_CREATED,
+} from '../actions/types';
 
 const initialState = {
+  isUploading: false,
   posts: [],
 };
 
@@ -23,6 +29,16 @@ const reducer = (state = initialState, action) => {
 
           return post;
         }),
+      };
+    case CREATING_POST:
+      return {
+        ...state,
+        isUploading: true,
+      };
+    case POST_CREATED:
+      return {
+        ...state,
+        isUploading: false,
       };
     default:
       return state;
