@@ -1,4 +1,4 @@
-# curso-react-native
+# Curso da COD3R sobre React Native
 
 ## Link do curso
 
